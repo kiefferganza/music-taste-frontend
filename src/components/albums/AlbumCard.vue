@@ -74,6 +74,7 @@ export default defineComponent({
     // Load the persisted vote from localStorage on component mount
     onMounted(() => {
       const savedVote = localStorage.getItem(`album-vote-${props.album.id}`);
+      console.log(savedVote)
       if (savedVote === 'upvote' || savedVote === 'downvote') {
         userVote.value = savedVote;
       }

@@ -65,9 +65,7 @@ export const useAlbumStore = defineStore('albums', () => {
       if (albumIndex !== -1) {
         // Update the votes count and user's vote
         albums.value[albumIndex] = {
-          ...albums.value[albumIndex],
-          votes: response.totalVotes,
-          value: voteType
+          ...response.data,
         };
 
         console.log(albums.value[albumIndex]);
