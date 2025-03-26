@@ -17,8 +17,9 @@
           <button
               @click="handleVote('upvote')"
               class="vote-btn upvote"
-              :class="{ active: userVote === 'upvote' }"
+              :class="{ active: userVote === 'upvote', disabled: userVote }"
               aria-label="Upvote"
+              :disabled="userVote==='upvote'"
           >
             <span class="vote-icon">👍</span>
           </button>
@@ -31,6 +32,8 @@
               class="vote-btn downvote"
               :class="{ active: userVote === 'downvote' }"
               aria-label="Downvote"
+              :disabled="userVote==='downvote'"
+
           >
             <span class="vote-icon">👎</span>
           </button>
@@ -73,7 +76,7 @@ export default defineComponent({
 
     // Load the persisted vote from localStorage on component mount
     onMounted(() => {
-      const savedVote = localStorage.getItem(`album-vote-${props.album.id}`);
+      const savedVote = localStorage.getItem(`album-vote-${props.album.id}-user-${authStore.user.id}`);
       console.log(savedVote)
       if (savedVote === 'upvote' || savedVote === 'downvote') {
         userVote.value = savedVote;
@@ -85,7 +88,7 @@ export default defineComponent({
       if (userVote.value === voteType) {
         // Remove the vote
         userVote.value = null;
-        localStorage.removeItem(`album-vote-${props.album.id}`);
+        localStorage.removeItem(`album-vote-${props.album.id}-user-${authstore.user.id}`);
       } else {
         // Set the new vote
         userVote.value = voteType;
