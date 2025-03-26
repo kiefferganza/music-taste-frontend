@@ -74,7 +74,7 @@
           const success = await authStore.login(email.value, password.value);
 
           if (success) {
-            router.push('/albums');
+            await router.push('/albums');
           } else {
             error.value = authStore.error || 'Login failed. Please try again.';
           }

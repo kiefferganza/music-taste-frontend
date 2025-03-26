@@ -89,7 +89,7 @@ export default defineComponent({
       } else {
         // Set the new vote
         userVote.value = voteType;
-        localStorage.setItem(`album-vote-${props.album.id}`, voteType);
+        localStorage.setItem(`album-vote-${props.album.id}-user-${authStore.user.id}`, voteType);
       }
 
       // Emit the vote event to update the backend
